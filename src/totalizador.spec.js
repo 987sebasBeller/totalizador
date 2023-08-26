@@ -36,5 +36,8 @@ describe("Totalizador de ventas",()=>{
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado ",()=>{
         expect(getPrecioTotalPorImpuesto(23,24.2,'AL')).toEqual(578.864);
     });
+    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado ",()=>{
+        expect(getPrecioTotalPorImpuesto(23,24.2,'NV')).toEqual(601.128);
+    });
 
 });

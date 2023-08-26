@@ -13,6 +13,7 @@ function getImpuestoPorPrecio(precio,porcentajeImpuesto){
 function getPrecioTotalPorImpuesto(cantidad,precioPorItem,estado){
     let precioNeto=getPrecioNeto(cantidad,precioPorItem);
     let impuestoPorcentaje=getImpuesto(estado);
-    return precioNeto+getImpuestoPorPrecio(precioNeto,impuestoPorcentaje);
+    let precioTotal=(precioNeto+getImpuestoPorPrecio(precioNeto,impuestoPorcentaje))
+    return Number.parseFloat(precioTotal.toFixed(3));
 }
 export {getImpuesto, getPrecioNeto,getPrecioTotalPorImpuesto};

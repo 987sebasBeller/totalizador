@@ -28,16 +28,20 @@ describe("Totalizador de ventas",()=>{
         expect(getPrecioNeto(23, 24.2)).toEqual(556.6);
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado CA",()=>{
-        expect(getPrecioTotalPorImpuesto(23,24.2,'CA')).toEqual(602.5195);
+        expect(getPrecioTotalPorImpuesto(23,24.2,'CA')).toEqual(602.519);
     });
     it("Precio total con impuesto para cantidad 55 precio por item 125.223 y porcentaje de impuesto de estado TX",()=>{
-        expect(getPrecioTotalPorImpuesto(55,125.223,'TX')).toEqual(7317.7190625); 
+        expect(getPrecioTotalPorImpuesto(55,125.223,'TX')).toEqual(7317.719); 
     });
-    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado ",()=>{
+    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado  AL",()=>{
         expect(getPrecioTotalPorImpuesto(23,24.2,'AL')).toEqual(578.864);
     });
-    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado ",()=>{
+    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado NV",()=>{
         expect(getPrecioTotalPorImpuesto(23,24.2,'NV')).toEqual(601.128);
+    });
+    
+    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado UT",()=>{
+        expect(getPrecioTotalPorImpuesto(23,24.2,'UT')).toEqual(593.614);
     });
 
 });

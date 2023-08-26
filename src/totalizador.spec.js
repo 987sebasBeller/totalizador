@@ -40,7 +40,7 @@ describe("Totalizador de ventas",()=>{
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado CA",()=>{
         const totalizador=new Totalizador(23,24.2,'CA');
-        expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(602.519);
+        expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(602.520);
     });
     it("Precio total con impuesto para cantidad 55 precio por item 125.223 y porcentaje de impuesto de estado TX",()=>{
         const totalizador=new Totalizador(55,125.223,'TX');

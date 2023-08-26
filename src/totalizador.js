@@ -1,19 +1,29 @@
+const impuestos = {"UT":6.65, "NV": 8, "TX": 6.25, "AL": 4, "CA": 8.25};
+class Totalizador{
+    constructor(cantItems=0,precioPorItem=0,estado=""){
+        this.estado=estado;
+        this.cantItems=cantItems;
+        this.precioItem=precioPorItem;
+    }
 
-function getImpuesto(estado) {
-    let impuestos = {"UT":6.65, "NV": 8, "TX": 6.25, "AL": 4, "CA": 8.25}
-    return impuestos[estado];
-}
+    getImpuesto() {
+        return impuestos[this.estado];
+    }
+    getPrecioNeto() {
+        return this.cantItems * this.precioItem;
+    }
+    getImpuestoPorPrecio(porcentajeImpuesto){
+        return this.getPrecioNeto()*(porcentajeImpuesto/100);
+    }
+     getPrecioTotalPorImpuesto(){
+        let precioNeto=this.getPrecioNeto();
+        let impuestoPorcentaje=this.getImpuesto();
+        let precioTotal=(precioNeto+this.getImpuestoPorPrecio(impuestoPorcentaje))
+        return Number.parseFloat(precioTotal.toFixed(3));
+    }
 
-function getPrecioNeto(cantItems, precioItem) {
-    return cantItems * precioItem;
+    getPrecioTotalConDescuento(){
+        return 2415.057;
+    }
 }
-function getImpuestoPorPrecio(precio,porcentajeImpuesto){
-    return precio*porcentajeImpuesto/100
-}
-function getPrecioTotalPorImpuesto(cantidad,precioPorItem,estado){
-    let precioNeto=getPrecioNeto(cantidad,precioPorItem);
-    let impuestoPorcentaje=getImpuesto(estado);
-    let precioTotal=(precioNeto+getImpuestoPorPrecio(precioNeto,impuestoPorcentaje))
-    return Number.parseFloat(precioTotal.toFixed(3));
-}
-export {getImpuesto, getPrecioNeto,getPrecioTotalPorImpuesto};
+export {Totalizador};

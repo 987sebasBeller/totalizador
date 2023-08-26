@@ -58,13 +58,16 @@ describe("Totalizador de ventas",()=>{
         const totalizador=new Totalizador(23,24.2,'UT');
         expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(593.614);
     });
-    it("Precio total orden<1000",()=>{
+    it("Precio total orden<=1000",()=>{
         const totalizador=new Totalizador(5,100,'CA');
         expect(totalizador.getPrecioTotalConDescuento()).toEqual(525.012);
     });
-    it("Precio total 1000<=orden<=3000 ",()=>{
+    it("Precio total 1000<orden<=3000 ",()=>{
         const totalizador=new Totalizador(20,100,'CA');
         expect(totalizador.getPrecioTotalConDescuento()).toEqual(2056.75);
-    });
-
+    }); 
+    it("Precio total 3000<orden<=7000 ",()=>{
+        const totalizador=new Totalizador(40,100,'CA');
+        expect(totalizador.getPrecioTotalConDescuento()).toEqual(4026.9);
+    }); 
 });

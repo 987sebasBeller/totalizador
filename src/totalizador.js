@@ -24,26 +24,26 @@ class Totalizador{
     getDescuento(precioTotal){
         let descuento=0;
         if(precioTotal<=1000){
-            descuento=0.03;
+            descuento=3;
         }
         else if(precioTotal>1000 && precioTotal<=3000){
-            descuento=0.05;
+            descuento=5;
         }
         else if(precioTotal>3000 && precioTotal<=7000){
-            descuento=0.07;
+            descuento=7;
         }
         else if(precioTotal>7000 && precioTotal<=10000){
-            descuento=0.1;
+            descuento=10;
         }
         
         else if(precioTotal>10000 && precioTotal<=30000){
-            descuento=0.15;
+            descuento=15;
         }
         return descuento;
     }
     getPrecioTotalConDescuento(){
         let precioTotal=this.precioNeto+this.impuestoSegunPrecioNeto;
-        precioTotal*=(1-this.getDescuento(precioTotal));
+        precioTotal*=(1-this.getDescuento(precioTotal)/100);
         return Number.parseFloat(precioTotal.toFixed(3));
     }
 }

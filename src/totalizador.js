@@ -5,7 +5,7 @@ class Totalizador{
         this.cantItems=cantItems;
         this.precioItem=precioPorItem;
         this.precioNeto=cantItems*precioPorItem;
-        this.impuestoSegunPrecioNeto=this.precioNeto*(impuestos[this.estado]/100)
+        this.impuestoSegunPrecioNeto=Number.parseFloat((this.precioNeto*(impuestos[this.estado]/100)).toFixed(3))
     }
 
     getImpuesto() {

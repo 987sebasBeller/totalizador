@@ -54,14 +54,17 @@ describe("Totalizador de ventas",()=>{
         const totalizador=new Totalizador(23,24.2,'NV');
         expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(601.128);
     });
-    
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado UT",()=>{
         const totalizador=new Totalizador(23,24.2,'UT');
         expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(593.614);
     });
-    it("Precio total con porcentaje de descuento para CA, precioitem 100 y cantidad 23",()=>{
-        const totalizador=new Totalizador(23,100,'CA');
-        expect(totalizador.getPrecioTotalConDescuento()).toEqual(2415.057);
+    it("Precio total orden<1000",()=>{
+        const totalizador=new Totalizador(5,100,'CA');
+        expect(totalizador.getPrecioTotalConDescuento()).toEqual(525.012);
+    });
+    it("Precio total 1000<=orden<=3000 ",()=>{
+        const totalizador=new Totalizador(20,100,'CA');
+        expect(totalizador.getPrecioTotalConDescuento()).toEqual(2056.75);
     });
 
 });

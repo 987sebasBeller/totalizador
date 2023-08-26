@@ -4,26 +4,37 @@ class Totalizador{
         this.estado=estado;
         this.cantItems=cantItems;
         this.precioItem=precioPorItem;
+        this.precioNeto=cantItems*precioPorItem;
+        this.impuestoSegunPrecioNeto=this.precioNeto*(impuestos[this.estado]/100)
     }
 
     getImpuesto() {
         return impuestos[this.estado];
     }
     getPrecioNeto() {
-        return this.cantItems * this.precioItem;
+        return this.precioNeto;
     }
-    getImpuestoPorPrecio(porcentajeImpuesto){
-        return this.getPrecioNeto()*(porcentajeImpuesto/100);
+    getImpuestoPorPrecio(){
+        return this.impuestoSegunPrecioNeto;
     }
      getPrecioTotalPorImpuesto(){
-        let precioNeto=this.getPrecioNeto();
-        let impuestoPorcentaje=this.getImpuesto();
-        let precioTotal=(precioNeto+this.getImpuestoPorPrecio(impuestoPorcentaje))
+        let precioTotal=(this.precioNeto+this.impuestoSegunPrecioNeto)
         return Number.parseFloat(precioTotal.toFixed(3));
     }
-
+    getDescuento(precioTotal){
+        let descuento=0;
+        if(precioTotal<=1000){
+            descuento=0.03;
+        }
+        else if(precioTotal>1000 && precioTotal<=3000){
+            descuento=0.05;
+        }
+        return descuento;
+    }
     getPrecioTotalConDescuento(){
-        return 2415.057;
+        let precioTotal=this.precioNeto+this.impuestoSegunPrecioNeto;
+        precioTotal*=(1-this.getDescuento(precioTotal));
+        return Number.parseFloat(precioTotal.toFixed(3));
     }
 }
 export {Totalizador};

@@ -16,8 +16,8 @@ describe("Totalizador de ventas",()=>{
         expect(getImpuesto("AL")).toEqual(4);
     });
 
-    it("Impuesto para el estado TX",()=>{
-        expect(getImpuesto("CA")).toEqual(8.25);
+    it("Impuesto para el estado UT",()=>{
+        expect(getImpuesto("UT")).toEqual(6.65);
     });
 
     it("Precio neto para cantidad 5 precio por item 20",()=>{
@@ -33,5 +33,8 @@ describe("Totalizador de ventas",()=>{
     it("Precio total con impuesto para cantidad 55 precio por item 125.223 y porcentaje de impuesto de estado TX",()=>{
         expect(getPrecioTotalPorImpuesto(55,125.223,'TX')).toEqual(7317.7190625); 
     });
-    
+    it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado ",()=>{
+        expect(getPrecioTotalPorImpuesto(23,24.2,'AL')).toEqual(578.864);
+    });
+
 });

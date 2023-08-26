@@ -7,7 +7,12 @@ function getImpuesto(estado) {
 function getPrecioNeto(cantItems, precioItem) {
     return cantItems * precioItem;
 }
-function getPrecioTotalPorImpuesto(cantItems, precioItem,porcentaje){
-    return 602.5195;
+function getImpuestoPorPrecio(precio,porcentajeImpuesto){
+    return precio*porcentajeImpuesto/100
+}
+function getPrecioTotalPorImpuesto(cantidad,precioPorItem,estado){
+    let precioNeto=getPrecioNeto(cantidad,precioPorItem);
+    let impuestoPorcentaje=getImpuesto(estado);
+    return precioNeto+getImpuestoPorPrecio(precioNeto,impuestoPorcentaje);
 }
 export {getImpuesto, getPrecioNeto,getPrecioTotalPorImpuesto};

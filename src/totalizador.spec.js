@@ -28,10 +28,10 @@ describe("Totalizador de ventas",()=>{
         expect(getPrecioNeto(23, 24.2)).toEqual(556.6);
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado CA",()=>{
-        expect(getPrecioTotalPorImpuesto(23, 24.2,8.25)).toEqual(602.5195);
+        expect(getPrecioTotalPorImpuesto(23,24.2,'CA')).toEqual(602.5195);
     });
-
-}
-
-
-);
+    it("Precio total con impuesto para cantidad 55 precio por item 125.223 y porcentaje de impuesto de estado TX",()=>{
+        expect(getPrecioTotalPorImpuesto(55,125.223,'TX')).toEqual(7317.7190625); 
+    });
+    
+});

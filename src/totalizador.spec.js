@@ -70,4 +70,8 @@ describe("Totalizador de ventas",()=>{
         const totalizador=new Totalizador(40,100,'CA');
         expect(totalizador.getPrecioTotalConDescuento()).toEqual(4026.9);
     }); 
+    it("Precio total 7000<orden<=10000 ",()=>{
+        const totalizador=new Totalizador(80,100,'CA');
+        expect(totalizador.getPrecioTotalConDescuento()).toEqual(7794);
+    }); 
 });

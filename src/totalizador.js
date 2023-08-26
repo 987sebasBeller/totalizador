@@ -32,6 +32,9 @@ class Totalizador{
         else if(precioTotal>3000 && precioTotal<=7000){
             descuento=0.07;
         }
+        else if(precioTotal>7000 && precioTotal<=10000){
+            descuento=0.1;
+        }
         return descuento;
     }
     getPrecioTotalConDescuento(){

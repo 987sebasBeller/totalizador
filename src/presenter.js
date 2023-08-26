@@ -13,8 +13,8 @@ form.addEventListener("submit", (event) => {
   let totalizador=new Totalizador(cant,precio,estadoTexto);
   const precioNeto = totalizador.precioNeto;
   div.innerHTML = `<p> Precio Neto(${cant}*$${precio}): $ ${precioNeto}  </p>`;
-  div.innerHTML += `<p> Descuento:${totalizador.getDescuento(totalizador.getPrecioTotalPorImpuesto())}  </p>`;
-  div.innerHTML += `<p> Impuesto:$${totalizador.getImpuestoPorPrecio()}  </p>`;
+  div.innerHTML += `<p> Descuento(${totalizador.getDescuento(totalizador.getPrecioTotalPorImpuesto())}%):${totalizador.getDescuento(totalizador.getPrecioTotalPorImpuesto())}  </p>`;
+  div.innerHTML += `<p> Impuesto(${totalizador.getImpuesto()}%):$${totalizador.getImpuestoPorPrecio()}  </p>`;
   div.innerHTML += `<p> PrecioTotal(descuento e impuesto):$${totalizador.getPrecioTotalConDescuento()}  </p>`;
   
   

@@ -1,81 +1,76 @@
 import {Totalizador} from "./totalizador";
 describe("Totalizador de ventas",()=>{
     it("Impuesto para el estado CA",()=>{
-        const totalizador=new Totalizador();
-        totalizador.estado="CA";
-        expect(totalizador.getImpuesto()).toEqual(8.25);
+        expect(getImpuesto("CA")).toEqual(8.25);
     });
 
     it("Impuesto para el estado NV",()=>{
-        const totalizador=new Totalizador();
-        totalizador.estado="NV";
-        expect(totalizador.getImpuesto()).toEqual(8);
+        expect(getImpuesto("NV")).toEqual(8);
     });
 
     it("Impuesto para el estado TX",()=>{
-        const totalizador=new Totalizador();
-        totalizador.estado="TX";
-        expect(totalizador.getImpuesto()).toEqual(6.25);
+        expect(getImpuesto("TX")).toEqual(6.25);
     });
     it("Impuesto para el estado AL",()=>{
-        const totalizador=new Totalizador();
-        totalizador.estado="AL";
-        expect(totalizador.getImpuesto()).toEqual(4);
+        expect(getImpuesto("AL")).toEqual(4);
     });
 
     it("Impuesto para el estado UT",()=>{
-        const totalizador=new Totalizador();
-        totalizador.estado="UT";
-        expect(totalizador.getImpuesto()).toEqual(6.65);
+        expect(getImpuesto("UT")).toEqual(6.65);
     });
 
     it("Precio neto para cantidad 5 precio por item 20",()=>{
-        const totalizador=new Totalizador(5,20);
-        expect(totalizador.getPrecioNeto()).toEqual(100);
+        expect(getPrecioNeto(5,20)).toEqual(100);
     });
 
     it("Precio neto para cantidad 23 precio por item 24.2",()=>{
-        const totalizador=new Totalizador(23,24.2);
-        expect(totalizador.getPrecioNeto()).toEqual(556.6);
+        expect(getPrecioNeto(23,24.2)).toEqual(556.6);
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado CA",()=>{
-        const totalizador=new Totalizador(23,24.2,'CA');
-        expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(602.520);
+        expect(getPrecioTotalPorImpuesto(23,24.2,'CA')).toEqual(602.520);
     });
     it("Precio total con impuesto para cantidad 55 precio por item 125.223 y porcentaje de impuesto de estado TX",()=>{
-        const totalizador=new Totalizador(55,125.223,'TX');
-        expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(7317.719); 
+        expect(getPrecioTotalPorImpuesto(55,125.223,'TX')).toEqual(7317.719); 
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado  AL",()=>{        
-            const totalizador=new Totalizador(23,24.2,'AL');
-            expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(578.864);
+            expect(getPrecioTotalPorImpuesto(23,24.2,'AL')).toEqual(578.864);
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado NV",()=>{
-        const totalizador=new Totalizador(23,24.2,'NV');
-        expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(601.128);
+        expect(getPrecioTotalPorImpuesto(23,24.2,'NV')).toEqual(601.128);
     });
     it("Precio total con impuesto para cantidad 23 precio por item 24.2 y porcentaje de impuesto de estado UT",()=>{
-        const totalizador=new Totalizador(23,24.2,'UT');
-        expect(totalizador.getPrecioTotalPorImpuesto()).toEqual(593.614);
+        expect(getPrecioTotalPorImpuesto(23,24.2,'UT')).toEqual(593.614);
     });
     it("Precio total orden<=1000",()=>{
-        const totalizador=new Totalizador(5,100,'CA');
-        expect(totalizador.getPrecioTotalConDescuento()).toEqual(525.012);
+        expect(getPrecioTotalConDescuento(5,100,'CA')).toEqual(541.250);
     });
     it("Precio total 1000<orden<=3000 ",()=>{
-        const totalizador=new Totalizador(20,100,'CA');
-        expect(totalizador.getPrecioTotalConDescuento()).toEqual(2056.75);
-    }); 
+            expect(getPrecioTotalConDescuento(20,100,'CA')).toEqual(2100.050);
+        }); 
     it("Precio total 3000<orden<=7000 ",()=>{
-        const totalizador=new Totalizador(40,100,'CA');
-        expect(totalizador.getPrecioTotalConDescuento()).toEqual(4026.9);
+        expect(getPrecioTotalConDescuento(40,100,'CA')).toEqual(4113.500);
     }); 
     it("Precio total 7000<orden<=10000 ",()=>{
-        const totalizador=new Totalizador(80,100,'CA');
-        expect(totalizador.getPrecioTotalConDescuento()).toEqual(7794);
+        expect(getPrecioTotalConDescuento(80,100,'CA')).toEqual(8053.800);
     }); 
     it("Precio total 10000<orden<=30000 ",()=>{
-        const totalizador=new Totalizador(150,100,'CA');
-        expect(totalizador.getPrecioTotalConDescuento()).toEqual(13801.875);
+        expect(getPrecioTotalConDescuento(150,100,'CA')).toEqual(14613.750);
     }); 
+    function getImpuesto(estado){
+        const totalizador=new Totalizador();
+        totalizador.estado=estado;
+        return totalizador.getImpuesto();
+    }
+    function getPrecioNeto(cant,precioPorItem){
+       const totalizador=new Totalizador(cant,precioPorItem);
+        return totalizador.getPrecioNeto();
+    }
+    function getPrecioTotalPorImpuesto(cant,precioPorItem,estado){
+        const totalizador=new Totalizador(cant,precioPorItem,estado);
+        return totalizador.getPrecioTotalPorImpuesto();
+    }
+    function getPrecioTotalConDescuento(cant,precioPorItem,estado){
+        const totalizador=new Totalizador(cant,precioPorItem,estado);
+        return totalizador.getPrecioTotalConDescuento();
+    }
 });

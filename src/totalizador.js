@@ -23,21 +23,21 @@ class Totalizador{
     }
     getDescuento(precioTotal){
         let descuento=0;
-        if(precioTotal<=1000){
+        if(precioTotal>1000 && precioTotal<=3000){
             descuento=3;
         }
-        else if(precioTotal>1000 && precioTotal<=3000){
+        else if(precioTotal>3000 && precioTotal<=7000){
             descuento=5;
         }
-        else if(precioTotal>3000 && precioTotal<=7000){
-            descuento=7;
-        }
         else if(precioTotal>7000 && precioTotal<=10000){
-            descuento=10;
+            descuento=7;
         }
         
         else if(precioTotal>10000 && precioTotal<=30000){
-            descuento=15;
+            descuento=10;
+        }
+        else if(precioTotal>30000){
+            descuento=15
         }
         return descuento;
     }
